@@ -14,7 +14,7 @@ function buildMetadata(sample) {
 
     d3.json(url).then(data => {
       Object.entries(data).forEach(([key, value]) => {
-        var li = output.append("li").text(`${key}: ${value}`);
+        var li = output.append("div").text(`${key}: ${value}`);
       });
     })
 
@@ -38,7 +38,7 @@ function buildCharts(sample) {
       
         d3.json(url).then(data => {
             let layout = {
-                title: 'Pie Chart'
+                //title: 'Pie Chart'
             }
             
             trace = {
@@ -53,25 +53,25 @@ function buildCharts(sample) {
               x: data["otu_ids"],
               y: data["sample_values"],
               mode: 'markers',
-              text: data["otu_labels"],
+              text: data["otu_labels"] ,
               
               marker: {
                 size: data["sample_values"],
-                color: data["otu_ids"]
+                color: data["otu_ids"], colorscale: 'Rainbow'
                 
               }
             };
             
-            var data = [trace1];
+            var data1 = [trace1];
             
             var layout1 = {
-              title: 'Marker Size',
+          //    title: 'Marker Size',
               showlegend: false,
-              // height: 600,
-              // width: 600
+                height: 600,
+                width: 1200
             };
             
-            Plotly.newPlot('bubble', data, layout1)
+            Plotly.newPlot('bubble', data1, layout1)
 
         })
 
